@@ -1,15 +1,14 @@
-MCP Demo - Enhanced Calculator Server
-=========================================
+MCP Demo - Basic Calculator Server
+===================================
 
 This project demonstrates a basic Model Context Protocol (MCP) server implementation
-using FastMCP that provides an enhanced calculator tool for AI models.
+using FastMCP that provides a simple calculator tool for AI models.
 
 FEATURES
 --------
-- Multi-operation calculator supporting add, subtract, multiply, and divide
-- Variable argument support for most operations
-- Strict validation for division (requires exactly 2 arguments)
-- Comprehensive error handling for invalid operations and edge cases
+- Basic calculator supporting add, subtract, multiply, and divide operations
+- Takes exactly two numbers as input for all operations
+- Comprehensive error handling for invalid operations and division by zero
 - Server-Sent Events (SSE) transport support
 
 REQUIREMENTS
@@ -33,26 +32,25 @@ CALCULATOR TOOL USAGE
 The calculator tool accepts the following parameters:
 
 operation (string): The operation to perform
-  - "add": Sum all provided numbers
-  - "subtract": Subtract subsequent numbers from the first
-  - "multiply": Multiply all numbers together
-  - "divide": Divide first number by second (exactly 2 numbers required)
+  - "add": Add two numbers (a + b)
+  - "subtract": Subtract second number from first (a - b)
+  - "multiply": Multiply two numbers (a * b)
+  - "divide": Divide first number by second (a / b)
 
-*numbers (float): Variable number of numeric arguments
+a (float): First number
+b (float): Second number
 
 EXAMPLES
 --------
-calculator("add", 1, 2, 3, 4)        → 10
-calculator("subtract", 100, 10, 5)   → 85
-calculator("multiply", 2, 3, 4)      → 24
-calculator("divide", 10, 2)          → 5.0
+calculator("add", 5, 3)        → 8.0
+calculator("subtract", 10, 4)  → 6.0
+calculator("multiply", 6, 7)   → 42.0
+calculator("divide", 15, 3)    → 5.0
 
 ERROR HANDLING
 --------------
 - Invalid operations raise ValueError
 - Division by zero raises ZeroDivisionError
-- Wrong argument count for division raises ValueError
-- Missing arguments raise ValueError
 
 SERVER CONFIGURATION
 --------------------
