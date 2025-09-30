@@ -1,19 +1,28 @@
-MCP Demo - Basic Calculator Server
-===================================
+MCP Demo - Complete Learning Repository
+=======================================
 
-This project demonstrates the fundamental concepts of Model Context Protocol (MCP)
-server implementation using FastMCP. This is a foundational example showing how MCP
-servers and clients communicate - **no LLM integration is included yet**.
+This repository provides a comprehensive learning path for Model Context Protocol (MCP)
+implementation, organized into two distinct parts:
 
-This example provides a simple calculator tool that demonstrates the core MCP concepts
-of tool registration, client-server communication, and different transport methods.
+**Part 1: Basic MCP Implementation and Mechanics** (Current Directory)
+- Demonstrates fundamental MCP concepts without LLM integration
+- Shows client-server communication and transport mechanisms
+- Provides hands-on experience with MCP tool registration and invocation
+
+**Part 2: LLM Integration** (`2_MCP_OpenAI_Integration/`)
+- Connects MCP tools to actual AI models
+- Real-world implementation with OpenAI/Claude integration
+- Production-ready patterns and best practices
+
+This first part provides a simple calculator tool that demonstrates the core MCP concepts
+of tool registration, client-server communication, and transport mechanisms.
 
 FEATURES
 --------
 - Basic calculator supporting add, subtract, multiply, and divide operations
 - Takes exactly two numbers as input for all operations
 - Comprehensive error handling for invalid operations and division by zero
-- Server-Sent Events (SSE) transport support
+- Two transport mechanisms demonstration (stdio and SSE)
 
 REQUIREMENTS
 ------------
@@ -76,7 +85,9 @@ SSE Transport (client-sse.py):
 TRANSPORT METHODS
 -----------------
 
-STDIO (Standard Input/Output):
+This demo demonstrates two of the three MCP transport mechanisms:
+
+**STDIO (Standard Input/Output):**
 - Communication through stdin/stdout pipes
 - Client launches server as subprocess on the same system
 - Simpler setup - no manual server startup required
@@ -84,18 +95,20 @@ STDIO (Standard Input/Output):
 - Use case: Tools and resources are on the same local machine
 - Process-to-process communication within same system
 
-SSE (Server-Sent Events):
+**SSE (Server-Sent Events):**
 - HTTP-based communication over network
 - Server runs independently on specified host/port
 - Requires manual server startup before client connection
-- Better for distributed systems and remote tool access
+- Good for distributed systems and remote tool access
 - Allows multiple clients to connect to same server instance
 - Use case: Tools and resources are on external/remote servers
-- Network-based communication across different systems
 
-Why the difference?
-- STDIO: Direct process communication for local tools (same machine)
-- SSE: Network communication for remote tools (different machines/services)
+**Note on Streamable HTTP**: Since this demo was recorded, MCP has introduced a third transport mechanism called Streamable HTTP, which is now the recommended approach for production environments. While not demonstrated in this basic example, it provides enhanced reliability and production readiness compared to SSE.
+
+Transport Selection Guide:
+- **STDIO**: Local development and testing (demonstrated here)
+- **SSE**: Basic network communication and learning (demonstrated here)
+- **Streamable HTTP**: Production deployments (not included in this demo)
 
 FUNDAMENTAL MCP CONCEPTS
 ------------------------
@@ -105,9 +118,7 @@ This demo illustrates core MCP principles:
 3. **Tool Invocation**: How clients call server tools with parameters
 4. **Transport Abstraction**: How MCP works over different communication methods
 
-**Note**: This is a basic MCP foundation. Real-world usage involves LLM integration
-where the AI model would discover and call these tools automatically based on user
-requests, rather than manual client calls as shown here.
+**Note**: This is Part 1 - foundational MCP mechanics. For actual LLM integration where AI models automatically discover and call these tools based on user requests, see Part 2 in the `2_MCP_OpenAI_Integration/` directory.
 
 SERVER CONFIGURATION
 --------------------
@@ -125,12 +136,9 @@ This implementation uses the FastMCP framework to demonstrate MCP fundamentals:
 - **Client-server pattern**: Clean separation of tool provider and consumer
 - **JSON-RPC communication**: MCP uses structured messaging protocol
 
-**Next Steps for Production Use:**
-1. **LLM Integration**: Connect to AI models (Claude, GPT, etc.) that can automatically discover and use these tools
-2. **Authentication**: Add security for remote tool access
-3. **Error Handling**: Implement comprehensive error recovery
-4. **Logging**: Add detailed operation logging
-5. **Tool Chaining**: Enable tools to call other tools
+**Learning Path:**
+1. **Complete Part 1** (Current): Understand MCP fundamentals and transport mechanisms
+2. **Proceed to Part 2** (`2_MCP_OpenAI_Integration/`): See actual LLM integration with OpenAI/Claude
+3. **Production Considerations**: Authentication, error handling, logging, tool chaining
 
-This foundation demonstrates how MCP enables AI models to interact with external
-tools and services in a standardized way.
+This foundation demonstrates how MCP enables structured communication between clients and servers. Part 2 shows how AI models can automatically discover and use these tools in real conversations.
