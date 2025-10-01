@@ -1,7 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 from dotenv import load_dotenv
 
-load_dotenv("../.venv")
+load_dotenv("../.env")
 
 # Create an MCP Server
 mcp = FastMCP(
