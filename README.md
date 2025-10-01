@@ -1,4 +1,4 @@
-MCP Demo - My Learning Project
+MCP Demo - Learning Project
 =============================
 
 This repository documents my exploration of Model Context Protocol (MCP) implementation.
